@@ -1,28 +1,12 @@
-## backend data for terraform
+provider azurerm {
+  version = "~>2.0"
+  features {}
+}
 terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
-
-  backend "remote" {
-  organization = "CloudQuickPOCs"
-
-    workspaces {
-      name = "AWS-CloudQuickPOCs"
-    }
+  backend "azurerm" {
+    resource_group_name = "rg-cloudquickpos"
+    storage_account_name = "ccpsazuretf001"
+    container_name = "ccpterraformstatefile"
+    key = "ccpterraform.tfstate"
   }
 }
-
-## random provider
-provider "random" {}
-
-## Provider us-east-1
-provider "aws" {
-  region = "us-east-1"
-}
-

@@ -1,4 +1,4 @@
-name: "Terraform-Plan-Infra-Plan"
+name: "Terraform-Plan"
 
 on:
   push:
@@ -10,13 +10,13 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:	
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRETE_ID }}
-      AWS_REGION: 'us-east-1'
+      ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
+      ARM_CLIENT_SUBSCRIPTION: ${{secrets.MYSUPERSECRETE}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.MYSBSCRIPTIONID}}
+      ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
